@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tempus-ex.com/fusionfeed
+docs: https://docs.tempus-ex.com/fusionfeed
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: https://docs.tempus-ex.com/fusionfeed
+  policy: >-
+    All API endpoints are prefixed with a major version number (currently V2,
+    at https://feed.fusion.tempus-ex.com/v2/). Tempus Ex commits to never making
+    breaking changes within a given major version number.
+deprecation:
+  policy: >-
+    From time to time Tempus Ex deprecates APIs. Deprecated APIs continue to
+    work, but clients are strongly encouraged to migrate to the suggested
+    alternatives as soon as possible.
+  policy_url: https://docs.tempus-ex.com/fusionfeed
+  sunset_header: false
+status_page: https://status.tempus-ex.com
+status_page_provider: Atlassian Statuspage
+data_availability:
+  note: >-
+    Data pre-dating FusionFeed operation in a league is unavailable; NFL
+    coverage begins in the 2021 season. Full coverage for all NFL games,
+    partial NCAA coverage, and select soccer (primarily Premier League) games.
+deprecated_operations: []

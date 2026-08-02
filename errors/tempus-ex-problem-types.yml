@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tempus-ex.com/fusionfeed
+format: http-status + graphql-errors
+envelope:
+  http: >-
+    Standard HTTP status codes on REST and GraphQL-over-HTTP transports.
+  graphql: >-
+    Errors returned in the top-level `errors` array of the GraphQL response,
+    per the GraphQL specification.
+problems:
+- status: 401
+  title: Unauthorized
+  detail: >-
+    Missing or invalid credentials. Observed response body:
+    {"message":"You are not authorized to perform this operation."}
+  remediation: >-
+    Provide a valid API key via "Authorization: token ..." or a valid JWT via
+    "Authorization: Bearer ...".
+  source: https://docs.tempus-ex.com/fusionfeed/authentication
+- status: 429
+  title: Too Many Requests
+  detail: >-
+    A rate limit or allowlist limit was reached. HTTP responses expose
+    consumption via the txm-limit-consumption header.
+  remediation: >-
+    Implement exponential backoff; contact support to request higher limits.
+  source: https://docs.tempus-ex.com/fusionfeed/limits
+graphql_errors:
+  note: >-
+    In GraphQL contexts, limit and validation failures are surfaced as GraphQL
+    errors rather than HTTP status codes; clients should inspect the response
+    `errors` array and apply exponential backoff on rate-limit errors.
+notes: >-
+  FusionFeed does not publish a numbered error-code registry; this catalog
+  captures the documented HTTP and GraphQL error behaviors verbatim. No
+  application/problem+json (RFC 9457) is used.

@@ -1,0 +1,101 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.tempus-ex.com/fusionfeed/graphql
+note: >-
+  Entity graph derived from the FusionFeed GraphQL documentation (there is no
+  published OpenAPI/SDL file; types and relationships are read from the
+  documented queries and connection fields). GraphQL global object IDs are
+  opaque prefixed strings (e.g. "CA~..." for games, "BA~..." for AV streams).
+entities:
+- name: FootballOrganization
+  kind: interface
+  description: Top-level football data source, obtained via `nfl` and `ncaa` fields.
+  fields: [currentSeason, schedule]
+  implementations: [NFL, NCAAFootball]
+- name: SoccerOrganization
+  kind: interface
+  description: Top-level soccer data source (select coverage, primarily Premier League).
+- name: Schedule
+  description: Games for a season/type (REGULAR, etc.).
+  fields: [games]
+- name: NFLGame
+  id_prefix: 'CA~'
+  description: A single game with stats, telemetry, video and metadata.
+  fields:
+  - id
+  - time
+  - week
+  - homeTeamEdge
+  - awayTeamEdge
+  - avStreamsConnection
+  - telemetryPacketsConnection
+  - playsConnection
+- name: Team
+  description: A team, referenced from games via homeTeamEdge / awayTeamEdge.
+  fields: [id, abbreviation]
+- name: Play
+  description: A play within a game; searchable via FQL predicates.
+  fields: [quarter, time, description]
+- name: AVStream
+  id_prefix: 'BA~'
+  description: An audio/video stream (camera or program feed).
+  fields:
+  - id
+  - name
+  - contentDescriptor
+  - hlsManifestURL
+  - downloadURL
+  - projectionViewMatrix
+  - variantsConnection
+  - cameraCalibrationsConnection
+- name: AVStreamVariant
+  description: A rendition of a stream at a given bitrate/codec.
+  fields: [bitrate, tracks]
+- name: AVStreamVariantVideoTrack
+  fields: [rfc6381Codec, height]
+- name: CameraCalibration
+  fields: [time, projectionViewMatrix]
+- name: TelemetryPacket
+  description: Low-latency X/Y tracking samples for players, officials and the ball.
+  fields: [objectSamples, position]
+relationships:
+- from: FootballOrganization
+  to: Schedule
+  type: has_many
+  via: schedule
+- from: Schedule
+  to: NFLGame
+  type: has_many
+  via: games
+- from: NFLGame
+  to: Team
+  type: has_one
+  via: homeTeamEdge
+- from: NFLGame
+  to: Team
+  type: has_one
+  via: awayTeamEdge
+- from: NFLGame
+  to: AVStream
+  type: has_many
+  via: avStreamsConnection
+- from: NFLGame
+  to: Play
+  type: has_many
+  via: playsConnection
+- from: NFLGame
+  to: TelemetryPacket
+  type: has_many
+  via: telemetryPacketsConnection
+- from: AVStream
+  to: AVStreamVariant
+  type: has_many
+  via: variantsConnection
+- from: AVStream
+  to: CameraCalibration
+  type: has_many
+  via: cameraCalibrationsConnection
+- from: AVStreamVariant
+  to: AVStreamVariantVideoTrack
+  type: has_many
+  via: tracks

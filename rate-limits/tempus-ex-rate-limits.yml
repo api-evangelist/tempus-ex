@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tempus-ex.com/fusionfeed/limits
+docs: https://docs.tempus-ex.com/fusionfeed/limits
+summary: >-
+  FusionFeed applies rate limits and allowlists to protect quality of service.
+  When a limit is reached the API responds with an HTTP 429 "Too Many Requests"
+  (or a GraphQL error, depending on context). Clients should implement
+  exponential backoff. HTTP responses expose consumption via a response header.
+signals:
+- kind: response-header
+  name: txm-limit-consumption
+  applies_to: HTTP requests
+  description: Quantifies consumption of the applicable rate limits.
+- kind: http-status
+  code: 429
+  reason: Too Many Requests
+  description: Returned when an HTTP rate limit is exceeded.
+- kind: graphql-error
+  description: >-
+    For GraphQL contexts a GraphQL error is returned instead of an HTTP 429.
+enforcement:
+  types: [rate-limit, allowlist]
+  backoff: exponential
+  increase: >-
+    Limits are per-account and can be raised on request via support
+    (support@tempus-ex.com).
+limit_count: 0
+notes: >-
+  Specific numeric thresholds are not published; limits are provisioned per
+  customer. This artifact captures the documented signaling contract, not fixed
+  quotas.

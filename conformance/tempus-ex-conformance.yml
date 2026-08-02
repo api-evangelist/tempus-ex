@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tempus-ex.com/fusionfeed
+standards:
+- id: graphql
+  conforms: true
+  evidence: FusionFeed exposes a GraphQL API at /v2/graphql (spec.graphql.org).
+- id: graphql-relay-connections
+  conforms: true
+  evidence: >-
+    Connections use the Relay Cursor Connections pattern (edges/node, first/last
+    arguments) — e.g. playsConnection, avStreamsConnection.
+- id: graphql-subscriptions
+  conforms: true
+  evidence: >-
+    WebSocket subscriptions supported via graphql-ws (and legacy
+    subscriptions-transport-ws) at /v2/graphql-ws.
+- id: apollo-persisted-queries
+  conforms: true
+  evidence: Automatic Persisted Queries (APQ) supported as implemented by Apollo.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    FusionFeed is an OAuth2 resource server accepting Bearer JWTs from external
+    IdPs (Okta authorization-code + PKCE, Amazon Cognito).
+- id: openid-connect
+  conforms: true
+  evidence: >-
+    Okta OIDC flow uses openid/profile/email scopes; id tokens are consumed as
+    the FusionFeed Bearer JWT.
+- id: rfc3339-timestamps
+  conforms: true
+  evidence: >-
+    Times expressed as RFC 3339 / ISO 8601 wall-clock stamps; HLS uses
+    #EXT-X-PROGRAM-DATE-TIME.
+- id: hls
+  conforms: true
+  evidence: Video delivered over HTTP Live Streaming (HLS); SRT available on request.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use HTTP status codes and the GraphQL errors array, not
+    application/problem+json.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: Deprecation communicated via docs/policy, no documented Sunset header.
+notes: >-
+  Derived from the published FusionFeed documentation. No public third-party
+  compliance certifications (SOC 2 / ISO 27001 / PCI / HIPAA) were found, so no
+  Compliance pointer is emitted.

@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: probed
+source: live probes of /.well-known/* on FusionFeed and Tempus Ex hosts
+summary: >-
+  No genuine /.well-known discovery documents were found. The API host
+  (feed.fusion.tempus-ex.com) returns HTTP 200 for every /.well-known path, but
+  the body is a generic FusionFeed HTML landing page (a catch-all), not the
+  requested document — so none of these are real discovery artifacts. The
+  marketing and docs hosts return 404. No WellKnown/SecurityTxt pointer is
+  emitted (nothing genuine to point to).
+hosts:
+- host: https://feed.fusion.tempus-ex.com
+  documents:
+  - { path: /.well-known/security.txt, status: 200, content_type: text/html, genuine: false, note: catch-all HTML landing page }
+  - { path: /.well-known/openid-configuration, status: 200, content_type: text/html, genuine: false, note: catch-all HTML landing page }
+  - { path: /.well-known/oauth-authorization-server, status: 200, content_type: text/html, genuine: false, note: catch-all HTML landing page }
+  - { path: /.well-known/api-catalog, status: 200, content_type: text/html, genuine: false, note: catch-all HTML landing page }
+  - { path: /.well-known/ai-plugin.json, status: 200, content_type: text/html, genuine: false, note: catch-all HTML landing page }
+- host: https://docs.tempus-ex.com
+  documents:
+  - { path: /.well-known/security.txt, status: 404 }
+  - { path: /.well-known/openid-configuration, status: 404 }
+  - { path: /.well-known/oauth-authorization-server, status: 404 }
+  - { path: /.well-known/api-catalog, status: 404 }
+  - { path: /.well-known/ai-plugin.json, status: 404 }
+- host: https://tempus-ex.com
+  documents:
+  - { path: /.well-known/security.txt, status: 404 }
+  - { path: /.well-known/openid-configuration, status: 404 }
+  - { path: /.well-known/oauth-authorization-server, status: 404 }
+  - { path: /.well-known/api-catalog, status: 404 }
+  - { path: /.well-known/ai-plugin.json, status: 404 }

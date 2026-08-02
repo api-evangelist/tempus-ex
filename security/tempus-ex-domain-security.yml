@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: tempus-ex.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan  7 23:59:59 2027 GMT
+  hsts: false
+- host: docs.tempus-ex.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 20 23:59:59 2026 GMT
+  hsts: false
+- host: feed.fusion.tempus-ex.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 25 06:42:51 2026 GMT
+  hsts: false
+domains:
+- domain: tempus-ex.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

@@ -1,8 +1,31 @@
 aid: tempus-ex
 name: Tempus Ex
-description: Tempus Ex is a company surfaced as a portfolio company of general-catalyst and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Tempus Ex is a sports data and media technology company (part of Infinite
+  Athlete) whose FusionFeed API aggregates data and media from many on-site
+  sources into a single API for gridiron football (NFL and NCAA) and association
+  football (soccer). FusionFeed provides schedules, game-by-game rosters,
+  official and AI-automated statistics, low-latency X/Y telemetry for players,
+  officials and the ball, scoreboard data, and live/VOD video (HLS and
+  sub-second SRT) including computer-vision products such as bounding boxes,
+  skeletal pose estimation, camera calibration and virtual FusionCams. The API
+  is offered as a GraphQL-first interface (with WebSocket subscriptions via
+  graphql-ws) and an interchangeable REST interface, both versioned under /v2/,
+  with a Fusion Query Language (FQL) for powerful play/event search.
 url: https://raw.githubusercontent.com/api-evangelist/tempus-ex/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://docs.tempus-ex.com/images/fusionfeed.svg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,12 +34,105 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Sports Data
+- Sports
+- Video
+- Streaming
+- Telemetry
+- GraphQL
+- REST
+- Media
+- NFL
+- Analytics
+apis:
+- name: FusionFeed
+  description: >-
+    FusionFeed aggregates sports data and media (schedules, rosters, official
+    and automated statistics, telemetry, scoreboard, and live/VOD video) into a
+    single GraphQL-first API (with an interchangeable REST interface and
+    WebSocket subscriptions), versioned under /v2/.
+  humanURL: https://docs.tempus-ex.com/fusionfeed
+  baseURL: https://feed.fusion.tempus-ex.com/v2/
+  tags:
+  - Sports Data
+  - Video
+  - GraphQL
+  - REST
+  - Telemetry
+  properties:
+  - type: Documentation
+    url: https://docs.tempus-ex.com/fusionfeed
+  - type: Authentication
+    url: authentication/tempus-ex-authentication.yml
+  - type: Conventions
+    url: conventions/tempus-ex-conventions.yml
+  - type: RateLimits
+    url: rate-limits/tempus-ex-rate-limits.yml
+  - type: Lifecycle
+    url: lifecycle/tempus-ex-lifecycle.yml
+  - type: ErrorCatalog
+    url: errors/tempus-ex-problem-types.yml
+  - type: Conformance
+    url: conformance/tempus-ex-conformance.yml
+  - type: DataModel
+    url: data-model/tempus-ex-data-model.yml
+  - type: AsyncAPI
+    url: asyncapi/tempus-ex-fusionfeed-asyncapi.yml
+  - type: MCPServer
+    url: mcp/tempus-ex-mcp.yml
+common:
+- type: DomainSecurity
+  url: security/tempus-ex-domain-security.yml
+- type: Website
+  url: https://tempus-ex.com
+- type: DeveloperPortal
+  url: https://docs.tempus-ex.com
+- type: Documentation
+  url: https://docs.tempus-ex.com/fusionfeed
+- type: APIReference
+  url: https://docs.tempus-ex.com/fusionfeed/graphql/explorer-and-reference
+- type: GettingStarted
+  url: https://docs.tempus-ex.com/fusionfeed
+- type: Support
+  url: mailto:support@tempus-ex.com
+- type: GitHubOrganization
+  url: https://github.com/tempus-ex
+- type: StatusPage
+  url: https://status.tempus-ex.com
+- type: Deprecation
+  url: lifecycle/tempus-ex-lifecycle.yml
+- type: Authentication
+  url: authentication/tempus-ex-authentication.yml
+- type: Conventions
+  url: conventions/tempus-ex-conventions.yml
+- type: RateLimits
+  url: rate-limits/tempus-ex-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/tempus-ex-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/tempus-ex-problem-types.yml
+- type: Conformance
+  url: conformance/tempus-ex-conformance.yml
+- type: DataModel
+  url: data-model/tempus-ex-data-model.yml
+- type: AsyncAPI
+  url: asyncapi/tempus-ex-fusionfeed-asyncapi.yml
+- type: MCPServer
+  url: mcp/tempus-ex-mcp.yml
+- type: LLMsTxt
+  url: llms/tempus-ex-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1

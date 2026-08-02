@@ -1,0 +1,77 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tempus-ex.com/fusionfeed
+docs: https://docs.tempus-ex.com/fusionfeed
+summary: >-
+  Cross-cutting request/response semantics for the FusionFeed API, derived from
+  the published documentation. GraphQL-first (with an interchangeable REST
+  surface), Relay-style cursor pagination, URI-path major versioning, and
+  header-based rate-limit signaling.
+authentication:
+  styles: [apiKey-header, bearer-jwt]
+  ref: authentication/tempus-ex-authentication.yml
+transport:
+  graphql:
+    http_endpoint: /v2/graphql
+    websocket_endpoint: /v2/graphql-ws
+    methods: [GET, POST]
+    content_types: [application/json, application/graphql]
+    persisted_queries: apollo-apq
+    subscription_protocols: [graphql-ws, subscriptions-transport-ws]
+  rest:
+    base: /v2/
+    note: >-
+      REST endpoints provide the same data as GraphQL and can be used
+      interchangeably (e.g. GET /v2/nfl/games?last=100).
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key mechanism is documented. Reads are naturally safe;
+    FusionFeed is a read/streaming data API with no documented write-idempotency
+    contract.
+pagination:
+  style: relay-cursor-connections
+  request_params: [first, last, after, before]
+  response_fields: [edges, node, pageInfo]
+  note: >-
+    Connections such as playsConnection, avStreamsConnection,
+    telemetryPacketsConnection and variantsConnection follow the Relay
+    Connections spec (edges/node with first/last cursor arguments).
+search:
+  language: FQL
+  ref: https://docs.tempus-ex.com/fusionfeed/fql
+  note: >-
+    Fusion Query Language (FQL) predicates power filtered search over plays and
+    other collections, e.g. predicate expression `team("NYJ") has TOUCHDOWN`.
+versioning:
+  scheme: uri-path
+  current: v2
+  policy: >-
+    Major version is prefixed on every endpoint (/v2/). No breaking changes are
+    made within a major version; deprecated APIs continue to work.
+  ref: lifecycle/tempus-ex-lifecycle.yml
+rate_limit_signal:
+  header: txm-limit-consumption
+  http_status: 429
+  guidance: exponential-backoff
+  ref: rate-limits/tempus-ex-rate-limits.yml
+error_model:
+  http: standard HTTP status codes (e.g. 401 unauthorized, 429 too many requests)
+  graphql: GraphQL top-level `errors` array
+  ref: errors/tempus-ex-problem-types.yml
+time_semantics:
+  format: RFC 3339 / ISO 8601 wall-clock timestamps
+  note: >-
+    All non-static data (including video) is precisely wall-clock stamped so it
+    can be synchronized across FusionFeed feeds and third-party timestamped
+    data. HLS playlists carry #EXT-X-PROGRAM-DATE-TIME.
+caching:
+  note: >-
+    FusionFeed caches aggressively at the edge; docs recommend cache-friendly
+    variable values (e.g. rounding telemetry query times to the nearest second)
+    to maximize cache hits.
+video:
+  protocols: [HLS, SRT]
+  note: >-
+    Video delivered primarily over HLS (~10s end-to-end latency) with optional
+    sub-second SRT feeds; streams identified by stable contentDescriptor.

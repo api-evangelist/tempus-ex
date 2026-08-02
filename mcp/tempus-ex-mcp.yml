@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: https://docs.tempus-ex.com/fusionfeed
+x-note: >-
+  No official/hosted Tempus Ex MCP server was found. This is a CANDIDATE tool
+  list derived from documented FusionFeed GraphQL/REST operations to illustrate
+  an agent-native surface; tool inputs/outputs would map to the FusionFeed
+  GraphQL schema. Not a provider claim.
+server:
+  name: tempus-ex-fusionfeed
+  transport: http
+  auth: 'Authorization: token <API_KEY> | Bearer <JWT>'
+tools:
+- name: get_service_version
+  description: Return the FusionFeed service version.
+  source_operation: 'GraphQL query { service { version } }'
+- name: list_games
+  description: List games for a league/season/type (e.g. last N NFL games).
+  source_operation: 'GraphQL nfl.schedule(season,type).games / REST GET /v2/nfl/games'
+- name: get_game
+  description: Fetch a single game by opaque node id.
+  source_operation: 'GraphQL node(id) { ... on NFLGame }'
+- name: search_plays
+  description: Search plays for a game using an FQL predicate.
+  source_operation: 'GraphQL playsConnection(predicate) / REST GET /v2/nfl/plays'
+- name: list_av_streams
+  description: List audio/video streams (HLS manifests) for a game.
+  source_operation: 'GraphQL avStreamsConnection { hlsManifestURL, contentDescriptor }'
+- name: get_video_clip_url
+  description: Get an HLS clip/download URL for a stream over a time window.
+  source_operation: 'GraphQL hlsManifestURL(time,durationSeconds) / downloadURL(...)'
+- name: get_telemetry
+  description: Fetch player/ball X/Y telemetry packets for a time window.
+  source_operation: 'GraphQL telemetryPacketsConnection(atOrAfterTime)'
+- name: get_preview_image
+  description: Get a stream preview/thumbnail image at a given time.
+  source_operation: 'REST GET /v2/av-streams/{streamId}/preview.jpg'

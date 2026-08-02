@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tempus-ex.com/fusionfeed/authentication
+docs: https://docs.tempus-ex.com/fusionfeed/authentication
+summary:
+  types: [apiKey, http, oauth2, openIdConnect]
+  api_key_in: [header]
+  oauth2_flows: [authorizationCode]
+  notes: >-
+    FusionFeed authenticates in two ways: a long-lived API key sent via the
+    "Authorization: token" HTTP header, or a JWT sent via the
+    "Authorization: Bearer" header. FusionFeed is an OAuth2 resource server —
+    it does NOT mint JWTs; an external identity provider (Okta, Amazon Cognito,
+    or a customer's own IdP) issues the tokens. Access-control policies can be
+    embedded directly in the JWT claims for fine-grained, per-user access.
+schemes:
+- name: apiKeyToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  format: 'token <API_KEY>'
+  description: >-
+    Long-lived API key issued by Tempus Ex, presented as
+    "Authorization: token MY_API_KEY_TOKEN". For WebSocket (graphql-ws)
+    connections the key is passed in the connection-init parameters as
+    {"authorization": "token MY_API_KEY"} since browsers cannot set WS headers.
+  sources: [docs]
+- name: bearerJWT
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  in: header
+  parameter: Authorization
+  format: 'Bearer <JWT>'
+  description: >-
+    JSON Web Token issued by an external identity provider, presented as
+    "Authorization: Bearer MY_JWT_TOKEN". FusionFeed acts as an OAuth2 resource
+    server that validates the token.
+  sources: [docs]
+identity_providers:
+- name: Okta
+  type: oauth2
+  flow: authorizationCode
+  pkce: true
+  scopes: [openid, profile, email]
+  authorizationUrl: https://tempus-ex.okta.com/oauth2/v1/authorize
+  tokenUrl: https://tempus-ex.okta.com/oauth2/v1/token
+  description: >-
+    Standard OAuth2 authorization-code-with-PKCE flow against Tempus Ex's Okta
+    tenant; the returned id token is used as the FusionFeed Bearer JWT.
+- name: Amazon Cognito
+  type: oauth2
+  flow: USER_PASSWORD_AUTH
+  region: us-east-1
+  description: >-
+    Cognito user-pool authentication (initiate-auth USER_PASSWORD_AUTH); the
+    returned id token is used as the FusionFeed Bearer JWT.
+- name: Custom Identity Provider
+  type: openIdConnect
+  description: >-
+    Customers may run their own IdP to mint JWTs for their end users, embedding
+    fine-grained access-control policies in the token claims so users can call
+    FusionFeed directly. Contact support to enable.
