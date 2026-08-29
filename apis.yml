@@ -13,6 +13,17 @@ description: >-
   graphql-ws) and an interchangeable REST interface, both versioned under /v2/,
   with a Fusion Query Language (FQL) for powerful play/event search.
 url: https://raw.githubusercontent.com/api-evangelist/tempus-ex/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
