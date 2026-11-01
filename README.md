@@ -64,6 +64,113 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Tempus Ex is a company surfaced as a portfolio company of general-catalyst and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Tempus Ex is a sports data and media technology company (part of Infinite Athlete) whose FusionFeed API aggregates data and media from many on-site sources into a single API for gridiron football (NFL and NCAA) and association football (soccer). FusionFeed provides schedules, game-by-game rosters, official and AI-automated statistics, low-latency X/Y telemetry for players, officials and the ball, scoreboard data, and live/VOD video (HLS and sub-second SRT) including computer-vision products such as bounding boxes, skeletal pose estimation, camera calibration and virtual FusionCams. The API is offered as a GraphQL-first interface (with WebSocket subscriptions via graphql-ws) and an interchangeable REST interface, both versioned under /v2/, with a Fusion Query Language (FQL) for powerful play/event search.
 
-Backed by: general-catalyst
+**Areas:** Company · Sports Data · Sports · Video · Streaming · Telemetry · GraphQL · REST · Media · NFL · Analytics · Real-Time
+
+## Tempus Ex on APIs.io
+
+Everything profiled for Tempus Ex is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tempus-ex/](https://apis.io/providers/tempus-ex/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [FusionFeed](https://apis.io/apis/tempus-ex/fusionfeed/) — FusionFeed aggregates sports data and media (schedules, rosters, official and automated statistics, telemetry, scoreboard, and live/VOD video) into a single…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [FusionFeed Realtime (GraphQL Subscriptions)](https://apis.io/asyncapis/tempus-ex/tempus-ex-fusionfeed-asyncapi/)
+
+#### Event channels (1)
+
+Individual events and webhooks the provider emits.
+
+- [/v2/graphql-ws](https://apis.io/channels/tempus-ex/v2-graphql-ws/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [tempus-ex-fusionfeed](https://apis.io/servers/tempus-ex/tempus-ex-fusionfeed/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Tempus Ex Authentication](https://apis.io/security/tempus-ex/tempus-ex-authentication/)
+- [Tempus Ex Domain Security](https://apis.io/security/tempus-ex/tempus-ex-domain-security/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Tempus Ex Rate Limits](https://apis.io/rate-limits/tempus-ex/tempus-ex-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://tempus-ex.com)
+- [Documentation](https://docs.tempus-ex.com/fusionfeed)
+- [Getting started](https://docs.tempus-ex.com/fusionfeed)
+- [API reference](https://docs.tempus-ex.com/fusionfeed/graphql/explorer-and-reference)
+- [GitHub](https://github.com/tempus-ex)
+- [Status](https://status.tempus-ex.com)
+
+## API Evangelist rating
+
+**Kin Score 34.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 42.7 |
+| Contract governance | 18.2 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 56.5 |
+| Access clarity | 0.0 |
+
+**Agent readiness 22.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tempus-ex/](https://apis.io/providers/tempus-ex/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Tempus Ex: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tempus-ex/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
